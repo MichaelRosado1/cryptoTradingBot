@@ -1,5 +1,7 @@
+from trader import Trader
+
 def main():
-    print('hello, world')
+    Trader()
 
 
 if __name__ == '__main__':
