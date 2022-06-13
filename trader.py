@@ -42,3 +42,20 @@ class Trader:
 
     def get_day_trade_count(self):
         return self.account.daytrade_count
+
+
+    def place_order(self, quantity):
+        self._api.submit_order(
+            symbol=self.symbol,
+            qty=quantity,
+            side='buy',
+            type='market'
+        )
+
+    def sell_order(self, quantity):
+        self._api.submit_order(
+            symbol=self.symbol,
+            qty=quantity,
+            side='sell',
+            type='market'
+        )
