@@ -1,7 +1,8 @@
 from trader import Trader
 
 def main():
-    Trader()
+    t = Trader('spy')
+
 
 
 if __name__ == '__main__':
