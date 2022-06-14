@@ -1,6 +1,7 @@
 # Trader class to handle all trading activity. i.e. buys, sells, account login...
 from secret import API_KEY, SECRET_KEY
 import alpaca_trade_api as tradeapi
+from alpaca_trade_api.rest import TimeFrame
 
 
 class Trader:
@@ -45,12 +46,14 @@ class Trader:
 
 
     def place_order(self, quantity):
-        self._api.submit_order(
+        order = self._api.submit_order(
             symbol=self.symbol,
             qty=quantity,
             side='buy',
             type='market'
         )
+
+        print('Order made: {} was bought at {}', order.symbol, order.submitted_at)
 
     def sell_order(self, quantity):
         self._api.submit_order(
@@ -59,3 +62,9 @@ class Trader:
             side='sell',
             type='market'
         )
+
+    def get_historical_data(self):
+        bars = self._api.get_crypto_bars(self.symbol, TimeFrame.Hour).df
+        return bars
+
+
