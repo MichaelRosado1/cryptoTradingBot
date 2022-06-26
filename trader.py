@@ -67,4 +67,9 @@ class Trader:
         bars = self._api.get_crypto_bars(self.symbol, TimeFrame.Hour).df
         return bars
 
+    def get_position(self, symbol):
+        try:
+            return self._api.get_position(symbol)
+        except:
+            print('Not able to get position on {}', symbol)
 
