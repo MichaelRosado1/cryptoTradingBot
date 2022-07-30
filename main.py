@@ -1,13 +1,17 @@
 from trader import Trader
 from data import Data
-import threading
+from strategy import Strategy
+
 
 def main():
-    t = Trader('DOGEUSD')
+    t = Trader('BTCUSD')
 
     data_stream = Data(t)
     data_stream.start_connection()
-    data_stream.get_symbol_data()
+    
+    strat = Strategy(t, data_stream)
+    strat.start_trading()
+
 
 if __name__ == '__main__':
     main()
